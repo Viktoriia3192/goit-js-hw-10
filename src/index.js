@@ -69,3 +69,4 @@ breedSelect.addEventListener('change', event => {
 document.addEventListener('DOMContentLoaded', () => {
   populateBreedSelect();
 });
+
