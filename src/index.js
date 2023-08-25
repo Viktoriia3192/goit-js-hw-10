@@ -7,16 +7,23 @@ const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const error = document.querySelector('.error');
 
+
 async function populateBreedSelect() {
   try {
     const response = await axios.get('https://api.thecatapi.com/v1/breeds');
     const breeds = response.data;
+    
+    const fragment = document.createDocumentFragment();
+    
     breeds.forEach(breed => {
       const option = document.createElement('option');
       option.value = breed.id;
       option.textContent = breed.name;
-      breedSelect.appendChild(option);
+      
+      fragment.appendChild(option);
     });
+    
+    breedSelect.appendChild(fragment);
   } catch (error) {
     showError();
   }
@@ -69,4 +76,3 @@ breedSelect.addEventListener('change', event => {
 document.addEventListener('DOMContentLoaded', () => {
   populateBreedSelect();
 });
-
